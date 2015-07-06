@@ -1,0 +1,43 @@
+
+    <div class="titleBox">
+      <label> New Post</label>
+      <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+
+    <%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field col-md-12 " style="margin-top: 10px">
+
+    <%= f.select :title,options_for_select([
+                                                        ['Internal','Internal'],
+                                                        ['Viva','Viva'],
+                                                        ['Presentation','Presentation'],
+                                                        ['Assignment','Assignment'],
+                                                        ['Lab Report', 'Lab Report'] ]) %>
+
+
+    <%= f.number_field :no, :placeholder=>"No." ,:style=>"width:5%; margin-left:15px;"  %>
+    <%= f.text_field :course  , :placeholder=> "COURSE",:style=>"width:15%; margin-left:15px;"   %>
+
+    <%= f.label :deadline,:style=>"width:10%; margin-left:15px;"%>
+    <%= f.date_select :deadline %>
+</div>
+    <div class="col-md-4">
+      <%= f.submit :class=>"btn btn-default" %>
+
+  </div>
+
+
+<% end %>

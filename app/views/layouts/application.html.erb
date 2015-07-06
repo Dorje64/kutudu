@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container-fluid">
+              <% if controller_name =="users"%>
+      <%=yield %>
+
+        <%else%>
+
+      <%= yield :header %>
+
+      <div class="col-md-3 visible-md visible-lg">
+        <%= yield :sidebar %>
+      </div>
+      <div class="col-md-9">
+        <%= yield :top %>
+        <%= yield %>
+      </div>
+<%end%>
+
+
+    </div>
+</body>
+</html>

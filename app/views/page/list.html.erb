@@ -1,0 +1,24 @@
+
+<div style="float: right">
+<%#= render 'shared/error'%>
+  <%#= render "users/sessions/new" %>
+  <%#= render 'shared/error'%>
+
+  <%=form_for (@page) do |g|  %>
+  <%= g.text_field :key %>
+      <%= g.submit %>
+
+  <%end%>
+
+
+</div>
+
+<% content_for :new_post do%>
+    <%= link_to 'New Post', new_post_path ,type:"button" , class:"btn btn-default" %>
+<% end %>
+
+
+<% content_for :group_name do%>
+<%#= session[:groupname] %>
+
+<%end%>

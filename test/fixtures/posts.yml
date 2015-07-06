@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  'no': 1
+  course: MyString
+  deadline: 2015-04-19
+
+two:
+  title: MyString
+  'no': 1
+  course: MyString
+  deadline: 2015-04-19

@@ -1,0 +1,27 @@
+<!--<h1>New Post</h1>-->
+<div class="panel-default panel-body">
+  <%= render 'form' %>
+
+</div>
+<% content_for :new_post do%>
+    <!--<button type="button" class="btn btn-default">Default</button>-->
+    <%= link_to 'Back', posts_path ,type:"button" , class:"btn btn-default" %>
+<% end %>
+
+
+<% content_for :header do %>
+    <%= render 'shared/header'%>
+<%end%>
+<% content_for :sidebar do%>
+    <div clas="row">
+      <%= render 'shared/sidebar'%>
+
+    </div>
+<%end%>
+
+<% content_for :top do%>
+    <!--<button type="button" class="btn btn-default">Default</button>-->
+    <div class="col-md-12">
+      <%= render 'shared/nav'%>
+    </div>
+<% end %>

@@ -1,0 +1,79 @@
+
+
+
+  <!-- Left column -->
+
+<!--<div style="border-color: deepskyblue ; border:2px;">-->
+  <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+
+  <hr>
+
+  <ul class="nav nav-stacked">
+    <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#userMenu">List out <i class="glyphicon glyphicon-chevron-down"></i></a>
+      <ul class="nav nav-stacked collapse in" id="userMenu">
+
+        <%if action_name=="index"%>
+            <li> <%= link_to " All" , posts_path, :class => "glyphicon glyphicon-home" %></li>
+            <%else%>
+            <li><%= link_to " All" , posts_path, :class => "glyphicon glyphicon-home" %></li>
+            <%end%>
+
+        <!--<li><a href="posts? task=1"><i class="glyphicon glyphicon-tasks"></i> Assignment </a>-->
+       <li> <%= link_to " Assignment" , posts_path(:sort=> "Assignment"), :class => "glyphicon glyphicon-tasks" %></li>
+       <li> <%= link_to " Presentation" , posts_path(:sort=> "Presentation"), :class => "glyphicon glyphicon-print" %></li>
+       <li> <%= link_to " Exam" , posts_path(:sort=> "Internal"), :class => "glyphicon glyphicon-print" %></li>
+       <li> <%= link_to " Viva" , posts_path(:sort=> "Viva"), :class => "glyphicon glyphicon-record" %></li>
+
+
+      </ul>
+    </li>
+
+    <!--<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"> List By <i class="glyphicon glyphicon-chevron-right"></i></a>-->
+
+      <!--<ul class="nav nav-stacked collapse" id="menu2">-->
+      <!--</ul>-->
+<!--</li>-->
+<% if action_name == "index"%>
+    <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"> My Information <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+      <ul class="nav nav-stacked collapse" id="menu2">
+        <li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i> Group Name : <%= @group.groupname %></a>
+        </li>
+        <li> <a href="#"><i class="glyphicon glyphicon-"></i> Members :<%= @members %></a></li>
+        <li><a href="#"> User Name : <%= current_user.username%></a>
+        </li>
+
+      </ul>
+    </li>
+<%end%>
+
+
+    <li class="nav-header">
+      <a href="#" data-toggle="collapse" data-target="#menu3"> Social Media <i class="glyphicon glyphicon-chevron-right"></i></a>
+      <ul class="nav nav-stacked collapse" id="menu3">
+        <li><a href=""><i class="glyphicon glyphicon-circle"></i> Facebook</a></li>
+        <li><a href=""><i class="glyphicon glyphicon-circle"></i> Twitter</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <hr>
+
+
+  <ul class="nav nav-pills nav-stacked">
+    <li class="nav-header"></li>
+    <li><a href="#"><i class="glyphicon glyphicon-list"></i> About </a></li>
+    <!--<li><a href="#"><i class="glyphicon glyphicon-briefcase"></i> Toolbox</a></li>-->
+    <!--<li><a href="#"><i class="glyphicon glyphicon-link"></i> Widgets</a></li>-->
+    <!--&lt;!&ndash;<li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> Reports</a></li>&ndash;&gt;-->
+    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Sign in</a></li>
+    <li><a href="#"><i class="glyphicon glyphicon-star"></i> Social Media</a></li>
+  </ul>
+
+
+
+  <!--<a href="#"><strong><i class="glyphicon glyphicon-list"></i> More Templates</strong></a>-->
+
+  <hr>
+
+<!--</div>-->
