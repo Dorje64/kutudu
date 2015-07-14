@@ -3,11 +3,19 @@ class PostsController < ApplicationController
 
   before_filter :authenticate_user!  #except:  [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  # before_filter :check_admin , only: [:index,:show]
 #  attr_accessor   :group, :members
  # before_filter :session.empty? , only: [:index]
 
   # GET /posts
   # GET /posts.json
+  # def check_admin
+  #
+  #   @group = Group.find(current_user.group_id)
+  #
+  #   redirect_to(root_path) if @group.admin != current_user.username
+  # end
+
   def index
     #if(user_signed_in?)
     @sort = params[:sort]
@@ -19,7 +27,7 @@ class PostsController < ApplicationController
     if (!@sort)
       @posts = Post.where('group_id' => current_user.group_id).order('deadline')
    else
-    @posts = Post.where('title' => @sort ).order('deadline')
+    @posts = Post.where('title' => @sort ).where('group_id' => current_user.group_id).order('deadline')
     end
 
   end
@@ -37,9 +45,14 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  # GET /posts/1/edit
-  def edit
-  end
+#   # GET /posts/1/edit
+   def edit
+
+     @group = Group.find(current_user.group_id)
+  if @group.admin != current_user.username
+     redirect_to(root_path)
+end
+   end
 
   # POST /posts
   # POST /posts.json
@@ -76,6 +89,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @group = Group.find(current_user.group_id)
+    if @group.admin != current_user.username
+      redirect_to(root_path)
+    else
 
  if @post.comments.each do |comment|
     comment.destroy
@@ -97,8 +114,12 @@ class PostsController < ApplicationController
      format.html { redirect_to posts_url, notice: 'all the comments and done are deleted, try again to' }
      format.json { head :no_content }
    end
+ end
+
+      end
   end
-end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

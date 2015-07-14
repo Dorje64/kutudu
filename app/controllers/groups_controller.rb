@@ -1,18 +1,17 @@
 class GroupsController < ApplicationController
- # before_filter :authenticate_user!
+  before_filter :authenticate_user!
   #before_filter :admin_authenticate
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_authenticate!
 
   # GET /groups
   # GET /groups.json
 
-  #  def admin_authenticate
-  #    if current_user.username == "Dorje"
-  #      return true
-  #    else
-  #      return false
-  #    end
-  # end
+    def admin_authenticate
+      redirect_to (root_path) if current_user.username!="Dorje"
+    end
+
+
 
   def index
     @groups = Group.all

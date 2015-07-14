@@ -1,7 +1,7 @@
 
     <div class="titleBox">
       <label> New Post</label>
-      <button type="button" class="close" aria-hidden="true">&times;</button>
+      <!--<button type="button" class="close" aria-hidden="true">&times;</button>-->
     </div>
 
     <%= form_for(@post) do |f| %>
@@ -18,26 +18,59 @@
   <% end %>
 
 
-  <div class="field col-md-12 " style="margin-top: 10px">
-
-    <%= f.select :title,options_for_select([
-                                                        ['Internal','Internal'],
-                                                        ['Viva','Viva'],
-                                                        ['Presentation','Presentation'],
-                                                        ['Assignment','Assignment'],
-                                                        ['Lab Report', 'Lab Report'] ]) %>
+  <!--<div class="field col-md-12 " style="margin-top: 10px">-->
 
 
-    <%= f.number_field :no, :placeholder=>"No." ,:style=>"width:5%; margin-left:15px;"  %>
-    <%= f.text_field :course  , :placeholder=> "COURSE",:style=>"width:15%; margin-left:15px;"   %>
+        <div class="col-md-offset-1">
 
-    <%= f.label :deadline,:style=>"width:10%; margin-left:15px;"%>
-    <%= f.date_select :deadline %>
-</div>
-    <div class="col-md-4">
-      <%= f.submit :class=>"btn btn-default" %>
+    <div class="form-inline field col-md-12 row" style="margin-top: 40px;">
 
+
+      <div class="form-group col-md-6">
+
+        <label for ="course"  > Subject: </label>
+        <%= f.text_field :course  , :placeholder=> "COURSE" ,class:"form-control" , autofocus:true %>
+      </div>
+
+
+              <div class="form-group col-md-6 " >
+
+                <label for ="title"  > Program Title: </label>
+
+                <%= f.select :title,options_for_select([
+                                                                ['Internal','Internal'],
+                                                                ['Viva','Viva'],
+                                                                ['Presentation','Presentation'],
+                                                                ['Assignment','Assignment'],
+                                                                ['Lab Report', 'Lab Report'] ], {:class=>"form-control col-md-6"}) %>
+            </div>
+
+
+
+
+    </div>
+
+
+          <div class="form-inline field col-md-12 row" style="margin-top: 20px;">
+            <div class="form-group col-md-6">
+            <label for ="no"  > Number: </label>
+            <%= f.number_field :no, :placeholder=>"Number" , :class=>"form-control" %>
+        </div>
+
+              <div class="form-group col-md-6">
+                <label for ="deadline" > Deadline: </label>
+            <%= f.date_select :deadline %>
+                </div>
+        </div>
+
+
+
+
+<br>
+<div class="col-md-6" style="margin-top: 40px">
+    <div class="from-group col-md-offset-1"> <%= f.submit :class=>"btn btn-default col-md-offset-1" %> </div>
   </div>
 
+</div>
 
 <% end %>
