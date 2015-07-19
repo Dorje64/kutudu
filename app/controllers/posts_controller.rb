@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   # GET /posts.json
+
   # def check_admin
   #
   #   @group = Group.find(current_user.group_id)
