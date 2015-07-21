@@ -31,10 +31,11 @@
           </div>
 
           <% if devise_mapping.rememberable? -%>
-              <div class="checkbox input-group" style="margin-top:10px; margin-left: 20px;">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
-              </div>
+              <!--<div class="checkbox input-group" style="margin-top:10px; margin-left: 20px;">-->
+                <!--<%= f.check_box :remember_me %>-->
+                <!--<%= f.label :remember_me %>-->
+              <!--</div>-->
+                <!---->
           <% end -%>
 
             <div style="margin-top:10px;  margin-left:auto; margin-right:auto; " class="form-group">
@@ -47,6 +48,8 @@
 
 <div class="form-group col-md-12 control" style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
 
+  <!--forgot password is not working-->
+  <!--it is commented on users/shared/links-->
     <%= render "users/shared/links" %>
     </div>
 
