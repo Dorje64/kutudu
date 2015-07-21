@@ -5,6 +5,7 @@
       <% if action_name == "index"%>
 
       <%= link_to ' NewPost', new_post_path ,:class=>"glyphicon glyphicon-plus btn btn-default" %>
+         <div style="float:right"> <%= paginate @posts  %></div>
 
 
           <%else %>

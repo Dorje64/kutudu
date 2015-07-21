@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def index
     #if(user_signed_in?)
+    @page=params[:page]
     @sort = params[:sort]
     @done=Done.new()
     @group = Group.find(current_user.group_id)
@@ -26,9 +27,9 @@ class PostsController < ApplicationController
     @members = User.where('group_id' => current_user.group_id).count
 
     if (!@sort)
-      @posts = Post.where('group_id' => current_user.group_id).order('deadline')
+      @posts = Post.where('group_id' => current_user.group_id).order('deadline').page(@page)
    else
-    @posts = Post.where('title' => @sort ).where('group_id' => current_user.group_id).order('deadline')
+    @posts = Post.where('title' => @sort ).where('group_id' => current_user.group_id).order('deadline').page(@page)
     end
 
   end

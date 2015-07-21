@@ -31,8 +31,10 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-          if ( current_user.username="Torchi" )
+          if ( current_user.username!="Torchi" )
             redirect_to(root_path)
+          else
+            @group=Group.new
             end
   end
 

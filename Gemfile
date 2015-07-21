@@ -42,6 +42,8 @@ gem 'bootstrap-sass', '~> 3.3.4.1'
 
 gem 'devise'
 
+gem 'devise_invitable', '~> 1.3.4'
+
 gem 'devise-i18n'
 
 gem 'kaminari'

@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
 
+
+  paginates_per 7
   before_destroy :no_referenced_done
   has_many :comments
   has_many :dones

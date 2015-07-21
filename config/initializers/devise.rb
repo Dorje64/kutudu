@@ -99,6 +99,45 @@ Devise.setup do |config|
   # Setup a pepper to generate the encrypted password.
   # config.pepper = '5f4c6ceaf8a13f89ed39891b975213309383a0935d623c0345fe2133855a56a334f59e4e191df4b1570a7174ddc31999eda6266477cb98a4ab5b3dd58f7f4344'
 
+  # ==> Configuration for :invitable
+  # The period the generated invitation token is valid, after
+  # this period, the invited resource won't be able to accept the invitation.
+  # When invite_for is 0 (the default), the invitation won't expire.
+  # config.invite_for = 2.weeks
+
+  # Number of invitations.rb users can send.
+  # - If invitation_limit is nil, there is no limit for invitations.rb, users can
+  # send unlimited invitations.rb, invitation_limit column is not used.
+  # - If invitation_limit is 0, users can't send invitations.rb by default.
+  # - If invitation_limit n > 0, users can send n invitations.rb.
+  # You can change invitation_limit column for some users so they can send more
+  # or less invitations.rb, even with global invitation_limit = 0
+  # Default: nil
+  # config.invitation_limit = 5
+
+  # The key to be used to check existing users when sending an invitation
+  # and the regexp used to test it when validate_on_invite is not set.
+  # config.invite_key = {:email => /\A[^@]+@[^@]+\z/}
+  # config.invite_key = {:email => /\A[^@]+@[^@]+\z/, :username => nil}
+
+  # Flag that force a record to be valid before being actually invited
+  # Default: false
+  # config.validate_on_invite = true
+
+  # Resend invitation if user with invited status is invited again
+  # Default: true
+  # config.resend_invitation = false
+
+  # The class name of the inviting model. If this is nil,
+  # the #invited_by association is declared to be polymorphic.
+  # Default: nil
+  # config.invited_by_class_name = 'User'
+
+  # The column name used for counter_cache column. If this is nil,
+  # the #invited_by association is declared without counter_cache.
+  # Default: nil
+  # config.invited_by_counter_cache = :invitations_count
+
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
   # confirming their account. For instance, if set to 2.days, the user will be
