@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-   devise_for :users do
-     match 'users/sign_out' => "devise/sessions#destroy" ,:via =>[:get]
-   end
+  devise_scope :user do
+    match '/users/sign_out' => 'devise/sessions#destroy', :as => :destroy_user_session, via: [:get, :delete]
+  end
  # devise_for :users, :controllers => { :'invitations.rb' => 'users/invitations.rb' }
 
   resources :groups
