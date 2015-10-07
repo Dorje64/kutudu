@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   before_filter :authenticate_user!  #except:  [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   # before_filter :check_admin , only: [:index,:show]
 #  attr_accessor   :group, :members
  # before_filter :session.empty? , only: [:index]
@@ -40,6 +41,7 @@ class PostsController < ApplicationController
 
   def show
     @comment=Comment.new
+    @image=Image.new
   end
 
   # GET /posts/new
@@ -103,10 +105,16 @@ end
 
  if  @post.dones.each do |done|
      done.destroy
-   end
  end
 
- if (@post.destroy)
+ end
+
+ if  @post.images.each do |image|
+   image.destroy
+ end
+end
+
+   if (@post.destroy)
    respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully deleted.' }
       format.json { head :no_content }

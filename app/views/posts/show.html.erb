@@ -30,6 +30,18 @@
   </div>
   </hr>
 
+<%= form_for([@post,@image],:html => {:multipart => true}) do |f| %>
+   <div> <%= f.file_field :image %><%= f.submit "Upload" %></div>
+<% end %>
+
+<%@post.images.each do |image|%>
+    <%=link_to "#{image.image_file_name}",images_show_path(:id => image.id)  %>
+    <%#= image.image.url %>
+</br>
+    <%end%>
+
+
+
 <div class="detailBox">
 <div class="titleBox">
   <label>Comments</label>

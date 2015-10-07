@@ -37,6 +37,8 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+
+
 ##added gem
 gem 'bootstrap-sass', '~> 3.3.4.1'
 
@@ -48,6 +50,7 @@ gem 'devise-i18n'
 
 gem 'kaminari'
 
+gem "paperclip"
 ####
 
 

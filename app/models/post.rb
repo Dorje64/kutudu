@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
   before_destroy :no_referenced_done
   has_many :comments
   has_many :dones
+  has_many :images
   # attr_accessor :title, :no, :course, :deadline, :details, :user_id , :group_id
   #  validates_presence_of :title, :no, :course, :deadline
 

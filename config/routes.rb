@@ -8,15 +8,15 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
     resources :dones
+    resource :images
   end
-
   root to: "posts#index"
 
-
+   get 'images/show'
   # match 'posts/assignment' => "posts/sort" , :via => [:get]
 
   match 'page/list' =>"page#list" , :via => [:post , :get]
-  #match '/' =>"page#list" , :via => [:post , :get]
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
