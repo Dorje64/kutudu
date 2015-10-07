@@ -31,7 +31,10 @@
   </hr>
 
 <%= form_for([@post,@image],:html => {:multipart => true}) do |f| %>
-   <div> <%= f.file_field :image %><%= f.submit "Upload" %></div>
+   <div> <%= f.file_field :image %>
+     <%=f.hidden_field :user_id ,value: current_user.id%>
+     <%=f.hidden_field :post_id ,value: @post.id %>
+     <%= f.submit "Upload" %></div>
 <% end %>
 
 <%@post.images.each do |image|%>
