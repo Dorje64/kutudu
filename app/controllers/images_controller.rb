@@ -17,7 +17,8 @@ class ImagesController < ApplicationController
     @image.user_id = current_user.id
     @image.post_id = @post.id
     if @image.save
-      redirect_to :action => :show, :id => @image.id
+      #redirect_to :action => :show, :id => @image.id
+      redirect_to post_path(@post), notice: 'Image is uploaded.'
     end
 
   end
