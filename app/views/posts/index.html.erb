@@ -2,7 +2,10 @@
 
 <div class="panel panel-default">
 
-    <% @posts.each do |post| %>
+
+  <% WelcomeMailer.confirmation_email(user).deliver %>
+
+  <% @posts.each do |post| %>
 
 
       <div class="panel-body">
