@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
   # Code is not reloaded between requests.
+
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -22,13 +22,15 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
+
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
 
+  # config.assets.css_compressor = :sass
   # Do not fallback to assets pipeline if a precompiled asset is missed.
+
   config.assets.compile = false
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
@@ -64,10 +66,10 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
       address: "smtp.gmail.com",
       port: 587,
-      domain: "gmail.com",
+      domain: "kutudu.herokuapp.com",
       authentication: "plain",
       enable_starttls_auto: true,
-      user_name: "ku.dorjee",
+      user_name: "ku.dorjee@gmail.com",
       password: "gmail com"
   }
 

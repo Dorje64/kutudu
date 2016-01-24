@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.2.3'
 
  # gem 'rails_12factor'
 
 group :development, :test do
-  gem 'mysql2'
+  gem 'mysql'
 end
 
 group :production do
@@ -13,11 +13,8 @@ group :production do
   gem 'rails_12factor'
 end
 
- gem 'activerecord-postgresql-adapter'
-
-gem 'sendgrid-rails', '~> 2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.4'
 # Use mysql as the database for Active Record
 # gem 'mysql2'
 # Use SCSS for stylesheets
@@ -52,7 +49,12 @@ gem 'devise-i18n'
 gem 'kaminari'
 
 gem "paperclip"
-####
+
+gem 'activerecord-postgresql-adapter'
+
+#gem 'sendgrid'
+
+ ####
 
 
 # Use ActiveModel has_secure_password

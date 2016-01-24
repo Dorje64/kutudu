@@ -7,11 +7,10 @@ class User < ActiveRecord::Base
   validates_presence_of :username
 
   #
-  # field :reset_password_token, type: String
-  # field :reset_password_sent_at, type: String
+   #field :reset_password_token, type: String
+   #field :reset_password_sent_at, type: String
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise  :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise  :database_authenticatable, :registerable,:recoverable, :rememberable, :trackable, :validatable
 end

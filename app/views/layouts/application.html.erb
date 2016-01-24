@@ -9,7 +9,7 @@
 <body>
 
 <div class="container-fluid">
-              <% if controller_name =="users"%>
+  <% if controller_name =="users"%>
       <%=yield %>
 
         <%else%>
@@ -19,6 +19,7 @@
       <div class="col-md-3 visible-md visible-lg">
         <%= yield :sidebar %>
       </div>
+      
       <div class="col-md-9">
         <%= yield :top %>
         <%= yield %>
