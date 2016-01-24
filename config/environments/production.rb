@@ -51,19 +51,7 @@ Rails.application.configure do
    config.log_level = :debug
   #
 
-
-
-  config.action_mailer.default_url_options = { :host => 'kutudu.herokuapp.com' }
-  ActionMailer::Base.smtp_settings = {
-      :address        => "smtp.sendgrid.net",
-      :port           => "25",
-      :authentication => :plain,
-      :user_name      => "dorje64",
-      :password       => "asdfworld1",
-      :domain         => "heroku.com"
-  }
-
-
+  config.action_mailer.default_url_options = { :host => 'smtp.sendgrid.net'}
 
 
   # Prepend all log lines with the following tags.
