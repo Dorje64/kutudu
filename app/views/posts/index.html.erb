@@ -1,11 +1,14 @@
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
 <div class="panel panel-default">
 
 
   <%# WelcomeMailer.confirmation_email(user).deliver %>
 
+<p> username  <%= ENV['SENDGRID_USERNAME'] %> </p>
+
   <% @posts.each do |post| %>
+
 
 
       <div class="panel-body">
@@ -24,6 +27,7 @@
         </div>
 
               <%else%>
+
 
               <div class="col-md-6 col-sm-12">
 
