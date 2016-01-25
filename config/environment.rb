@@ -14,3 +14,4 @@ ActionMailer::Base.smtp_settings = {
     :domain         => "heroku.com",
     :enable_starttls_auto => true
 }
+ActionMailer::Base.default_url_options = { host: 'kutudu.herokuapp.com' }
