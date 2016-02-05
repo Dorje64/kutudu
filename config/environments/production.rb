@@ -51,7 +51,7 @@ Rails.application.configure do
    config.log_level = :debug
   #
 
-  config.action_mailer.default_url_options = { :host => 'smtp.sendgrid.net'}
+  #config.action_mailer.default_url_options = { :host => 'smtp.main'}
 
 
   # Prepend all log lines with the following tags.
@@ -85,4 +85,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => 'kutudo.herokuapp.com' }
 end

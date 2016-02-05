@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   root to: "posts#index"
 
    get 'images/show'
+
+   get 'images/pdf'
   # match 'posts/assignment' => "posts/sort" , :via => [:get]
 
   match 'page/list' =>"page#list" , :via => [:post , :get]

@@ -4,20 +4,6 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!  #except:  [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  # before_filter :check_admin , only: [:index,:show]
-#  attr_accessor   :group, :members
- # before_filter :session.empty? , only: [:index]
-
-  # GET /posts
-  # GET /posts.json
-
-  # def check_admin
-  #
-  #   @group = Group.find(current_user.group_id)
-  #
-  #   redirect_to(root_path) if @group.admin != current_user.username
-  # end
-
   def index
     #if(user_signed_in?)
     @page=params[:page]
@@ -33,6 +19,7 @@ class PostsController < ApplicationController
     @posts = Post.where('title' => @sort ).where('group_id' => current_user.group_id).order('deadline').page(@page)
     end
 
+    @pdf=Image.where("image_content_type"=>"application/pdf")
   end
 
 # GET /posts/1

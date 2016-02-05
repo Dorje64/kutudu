@@ -1,15 +1,9 @@
-  <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
 <div class="panel panel-default">
 
 
-  <%# WelcomeMailer.confirmation_email(user).deliver %>
-
-<p> username  <%= ENV['SENDGRID_USERNAME'] %> </p>
-
   <% @posts.each do |post| %>
-
-
 
       <div class="panel-body">
         <div class="row">
@@ -42,29 +36,31 @@
 
 
         <%end%>
-  <div class="col-md-1 col-xs-2 col-">
-          <%= form_for([post,@done]) do |f1| %>
-            <%if !current_user.dones.find_by_post_id(post.id)%>
-                <%= f1.hidden_field :post_id, value: post.id  %>
-                <%= f1.submit value: "  Done" ,:confirm=> "Are you sure?" ,:class=>"btn btn-default" %>
-            <%else%>
-                <span class="glyphicon glyphicon-ok "></span>
-            <% end %>
+  <div class="col-md-6 col-xs-2 row inline">
+    <div class="col-md-2">
+      <%= form_for([post,@done]) do |f1| %>
+          <%if !current_user.dones.find_by_post_id(post.id)%>
+              <%= f1.hidden_field :post_id, value: post.id  %>
+              <%= f1.submit value: "  Done" ,:confirm=> "Are you sure?" ,:class=>"btn btn-default" %>
+          <%else%>
+              <span class="glyphicon glyphicon-ok "></span>
+          <% end %>
+      <%end%>
+    </div>
 
-            <%end%>
+
+
+    <div class="col-md-10">
+      <%= link_to 'Show Detail', post%>
+
+      <%if current_user.username == @group.admin %>
+          <%= link_to 'Edit', edit_post_path(post) ,:class=>"col-md-2" %>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"col-md-4"%>
+      <%end%>
+</div>
     </div>
 
 </div>
-
-  <div class="col-md-3">
-            <%= link_to 'Show Detail', post%>
-
-          <%if current_user.username == @group.admin %>
-                <%= link_to 'Edit', edit_post_path(post) ,:class=>"col-md-2" %>
-                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"col-md-4"%>
-            <%end%>
-    </div>
-
         <div class=" col-md-12" style="border-top: 1px solid#e9e9e9;  margin-top: 15px"></div>
 
 </div>

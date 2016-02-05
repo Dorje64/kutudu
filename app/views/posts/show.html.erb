@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<div class ="detailBox">
-  <div class="titleBox">
-    <label> Post</label>
-    <!--<button type="button" class="close" aria-hidden="true">&times;</button>-->
-  </div>
 
-<div class="commentList ">
+  <!--<div class="titleBox">-->
+    <!--<label> Post</label>-->
+    <!--&lt;!&ndash;<button type="button" class="close" aria-hidden="true">&times;</button>&ndash;&gt;-->
+  <!--</div>-->
+
+<div class="panel panel-success">
+  <div class="panel-body">
   <b style="height: 50px; padding:1%"><p style="font-size:190%" class="col-md-12 col-sm-12 col-xs-12">
   <b> <%= @post.title %></b>
   <%= @post.no %>
@@ -20,29 +21,37 @@
   <%= @post.deadline%>
 
 </p></b>
+</div>
+  <div class="panel-footer">
+<div class="col-md-6">
+    <%= form_for([@post,@image],:html => {:multipart => true}, :class=>"form-inline") do |f| %>
+       <span class="input-group form-control row">
+          <%= f.file_field :image , :class=>"col-md-8 input-group-button"%>
+          <%=f.hidden_field :user_id ,value: current_user.id%>
+          <%=f.hidden_field :post_id ,value: @post.id %>
+          <%= f.submit "Upload" ,:class=>"input-group-button col-md-4" %></span>
+      <% end %>
 
-<p class="col-md-offset-10 col-sm-offset-2" >
+    </div>
+
+    <p class="col-md-3 col-md-offset-3" >
   <span class="sub-text"> <%= @post.username %></span><br>
   <span class="date sub-text"><%= time_ago_in_words(@post.created_at) %> ago</span>
 </p>
 
-</div>
+
+  <%=link_to "PHOTOS",images_show_path(:id => @post.id), class:"btn btn-info" %><span class="badge">  <%= @post.images.where('image_content_type'=>"image/jpeg").count%></span>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#list">PDF FILES</button>
+    <span class="badge"><%=@post.images.where('image_content_type'=>"application/pdf").count%></span>
+    <div id="list" class="collapse">
+      <% @post.images.where('image_content_type'=>"application/pdf").each do |pdf|%>
+      <li><%= link_to "#{pdf.image_file_name}",images_pdf_path(:id=>pdf.id) %></li>
+      <%end%>
+
+    </div>
+
   </div>
-  </hr>
-
-<%= form_for([@post,@image],:html => {:multipart => true}) do |f| %>
-   <div> <%= f.file_field :image %>
-     <%=f.hidden_field :user_id ,value: current_user.id%>
-     <%=f.hidden_field :post_id ,value: @post.id %>
-     <%= f.submit "Upload" %></div>
-<% end %>
-
-<%@post.images.each do |image|%>
-    <%=link_to "#{image.image_file_name}",images_show_path(:id => image.id)  %>
-    <%#= image.image.url %>
-</br>
-    <%end%>
-
+</div>
 
 
 <div class="detailBox">
@@ -100,10 +109,6 @@
 <% end %>
 </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
-
-
 <% content_for :header do %>
     <%= render 'shared/header'%>
 <%end%>
@@ -116,7 +121,5 @@
 <%end%>
 
 <% content_for :top do%>
-    <!--<button type="button" class="btn btn-default">Default</button>-->
     <%= render 'shared/nav'%>
-
 <% end %>
