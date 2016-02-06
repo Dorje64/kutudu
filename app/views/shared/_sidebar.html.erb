@@ -31,9 +31,7 @@
     <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"> My Information <i class="glyphicon glyphicon-chevron-right"></i></a>
 
       <ul class="nav nav-stacked collapse" id="menu2">
-        <li><a href="#"><i class="glyphicon glyphicon-bullhorn"></i> Group Name : <%= @group.groupname %></a>
-        </li>
-        <li> <a href="#"><i class="glyphicon glyphicon-"></i> Members:<%= @members %></a></li>
+        <li> <a href="#"><i class="glyphicon glyphicon-"></i> Members:</a></li>
         <li><a href="#"> User Name : <%= current_user.username%></a>
         </li>
 
@@ -43,7 +41,7 @@
 
 
     <li class="nav-header">
-      <a href="#" data-toggle="collapse" data-target="#menu3"> Members <i class="glyphicon glyphicon-chevron-right"></i></a>
+      <a href="#" data-toggle="collapse" data-target="#menu3"> Members <span class="badge"> <%= @members %> </span> <i class="glyphicon glyphicon-chevron-right"></i></a>
       <ul class="nav nav-stacked collapse" id="menu3">
         <%User.where("group_id"=>"#{current_user.group_id}").each do |user|%>
         <li><a href=""><i class="glyphicon glyphicon-user"><%=user.username%></user.></i></a></li>
