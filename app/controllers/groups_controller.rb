@@ -7,18 +7,13 @@ class GroupsController < ApplicationController
   # GET /groups
   # GET /groups.json
 
-    def admin_authenticate
-      redirect_to (root_path) if current_user.username!="Dorje"
-    end
-
-
 
   def index
-    if ( current_user.username!="Torchi" )
+   # if ( current_user.username!="Torchi" )
       redirect_to(root_path)
-    else
+   # else
     @groups = Group.all
-      end
+    #  end
   end
 
   # GET /groups/1
@@ -31,11 +26,11 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-          if ( current_user.username!="Torchi" )
-            redirect_to(root_path)
-          else
+#          if ( current_user.username!="Torchi" )
+ #           redirect_to(root_path)
+  #        else
             @group=Group.new
-            end
+   #         end
   end
 
   # GET /groups/1/edit

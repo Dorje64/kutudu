@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   #  validates_presence_of :title, :no, :course, :deadline
 
   validates_presence_of :course
-  validates_presence_of :no
+  #validates_presence_of :no
   validates_presence_of :title
   def no_referenced_done
     return if dones.empty?

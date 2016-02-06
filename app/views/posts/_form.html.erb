@@ -42,7 +42,10 @@
                                                                 ['Viva','Viva'],
                                                                 ['Presentation','Presentation'],
                                                                 ['Assignment','Assignment'],
-                                                                ['Lab Report', 'Lab Report'] ], {:class=>"form-control col-md-6"}) %>
+                                                                ['Lab Report', 'Lab Report'],
+                                                                ['MCQ','MCQ'],
+                                                                ['Lab Exam', 'Lab Exam']
+                                                                              ], {:class=>"form-control col-md-6"}) %>
             </div>
 
 
@@ -54,7 +57,7 @@
           <div class="form-inline field col-md-12 row" style="margin-top: 20px;">
             <div class="form-group col-md-6">
             <label for ="no"  > Number: </label>
-            <%= f.number_field :no, :placeholder=>"Number" , :class=>"form-control" %>
+            <%= f.number_field :no, :placeholder=>"You can ignore" , :class=>"form-control" %>
         </div>
 
               <div class="form-group col-md-6">
@@ -68,7 +71,7 @@
 
 <br>
 <div class="col-md-6" style="margin-top: 40px">
-    <div class="from-group col-md-offset-1"> <%= f.submit :class=>"btn btn-default col-md-offset-1" %> </div>
+    <div class="from-group col-md-offset-1"> <%= f.submit :class=>"btn btn-primary col-md-offset-1" %> </div>
   </div>
 
 </div>
