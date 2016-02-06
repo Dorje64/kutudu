@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!
   #before_filter :admin_authenticate
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   #before_filter :admin_authenticate!
@@ -9,11 +9,11 @@ class GroupsController < ApplicationController
 
 
   def index
-   # if ( current_user.username!="Torchi" )
-      redirect_to(root_path)
-   # else
+    if ( current_user.username!="Torchi" )
+   redirect_to(root_path)
+    else
     @groups = Group.all
-    #  end
+    end
   end
 
   # GET /groups/1
@@ -26,11 +26,11 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
-#          if ( current_user.username!="Torchi" )
- #           redirect_to(root_path)
-  #        else
+       if ( current_user.username!="Torchi" )
+            redirect_to(root_path)
+          else
             @group=Group.new
-   #         end
+            end
   end
 
   # GET /groups/1/edit
