@@ -3,7 +3,7 @@
 
   <!-- Left column -->
 
-<!--<div style="border-color: deepskyblue ; border:2px;">-->
+
   <strong><%= link_to " Home" , posts_path, :class => "glyphicon glyphicon-home" %></strong>
 
   <hr>
@@ -31,7 +31,7 @@
     <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2"> My Information <i class="glyphicon glyphicon-chevron-right"></i></a>
 
       <ul class="nav nav-stacked collapse" id="menu2">
-        <li> <a href="#"><i class="glyphicon glyphicon-"></i> Members:</a></li>
+        <li> <a href="#"><i class="glyphicon glyphicon-"></i> Group: <%= @group.groupname%> </a></li>
         <li><a href="#"> User Name : <%= current_user.username%></a>
         </li>
 
@@ -66,5 +66,3 @@
   <!--<a href="#"><strong><i class="glyphicon glyphicon-list"></i> More Templates</strong></a>-->
 
   <hr>
-
-<!--</div>-->

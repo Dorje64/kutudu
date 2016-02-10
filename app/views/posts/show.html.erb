@@ -25,12 +25,11 @@
   <div class="panel-footer">
 <div class="col-md-6">
     <%= form_for([@post,@image],:html => {:multipart => true}, :class=>"form-inline") do |f| %>
-       <span class="input-group form-control row">
-          <%= f.file_field :image , :class=>"col-md-8 input-group-button"%>
+      <choose> <%= f.file_field :image , :class=>"col-md-8 input-group-button"%></choose>
           <%=f.hidden_field :user_id ,value: current_user.id%>
           <%=f.hidden_field :post_id ,value: @post.id %>
-          <%= f.submit "Upload" ,:class=>"input-group-button col-md-4" %></span>
-      <% end %>
+         <upload> <%= f.submit "Upload" ,:class=>"input-group-button col-md-4"%></upload>
+  <% end %>
 
     </div>
 
@@ -43,6 +42,7 @@
   <%=link_to "PHOTOS",images_show_path(:id => @post.id), class:"btn btn-info" %><span class="badge">  <%= @post.images.where('image_content_type'=>"image/jpeg").count%></span>
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#list">PDF FILES</button>
     <span class="badge"><%=@post.images.where('image_content_type'=>"application/pdf").count%></span>
+
     <div id="list" class="collapse">
       <% @post.images.where('image_content_type'=>"application/pdf").each do |pdf|%>
       <li><%= link_to "#{pdf.image_file_name}",images_pdf_path(:id=>pdf.id) %></li>
@@ -97,16 +97,17 @@
 
 
 <!--<div class="col-md-12">-->
-      <div class="form-group field ">
-        <%= f.text_area :content, :class=>"form-control" , :placeholder=>"Your comments" %>
-        <%= f.hidden_field :post_id ,value: @post.id %>
-      </div>
-      <div class="form-group action btn btn-default">
-        <%= f.submit  :value=> "Add"  %>
-      </div>
+<div class="form-inline form-group field">
 
+        <%= f.text_area :content, :class=>"form-control fixed" ,cols: 80, rows:1,  :placeholder=>"Your comments" %>
+        <%= f.hidden_field :post_id ,value: @post.id %>
+
+
+        <%= f.submit  :value=> "Comment" ,:class=>"form-control action btn btn-primary  "  %>
+      </div>
+  <% end %>
 </div>
-<% end %>
+
 </div>
 
 <% content_for :header do %>
@@ -123,3 +124,11 @@
 <% content_for :top do%>
     <%= render 'shared/nav'%>
 <% end %>
+
+<script>
+  $("upload").hide();
+    $("choose").click(function()
+    {
+      $("upload").show();
+    })
+</script>
