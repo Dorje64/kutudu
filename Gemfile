@@ -52,8 +52,6 @@ gem "paperclip"
 
 gem 'activerecord-postgresql-adapter'
 
-gem 'sendgrid'
-
  ####
 
 
