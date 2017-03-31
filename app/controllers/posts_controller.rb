@@ -6,18 +6,18 @@ class PostsController < ApplicationController
 
   def index
     #if(user_signed_in?)
-    @page=params[:page]
+    page=params[:page]
     @sort = params[:sort]
     @done=Done.new()
-    @group = Group.find(current_user.group_id)
+    @group = Group.find(group_id)
 
-    @members = User.where('group_id' => current_user.group_id).count
+    @members = User.where('group_id' => group_id).count
 
     if (!@sort)
-      @posts = Post.where('group_id' => current_user.group_id).order('deadline').page(@page)
-   else
-    @posts = Post.where('title' => @sort ).where('group_id' => current_user.group_id).order('deadline').page(@page)
-    end
+      @posts = Post.where('group_id' => group_id).order('deadline').page(page)
+    else
+      @posts = Post.where('title' => @sort ).where('group_id' => group_id)
+                                        .order('deadline').page(page)
 
     @pdf=Image.where("image_content_type"=>"application/pdf")
   end
@@ -39,17 +39,17 @@ class PostsController < ApplicationController
 #   # GET /posts/1/edit
    def edit
 
-     @group = Group.find(current_user.group_id)
+     @group = Group.find(group_id)
   if @group.admin != current_user.username
      redirect_to(root_path)
-end
+   end
    end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    @post.group_id = current_user.group_id
+    @post.group_id = group_id
     @post.username = current_user.username
    # @post.save
     respond_to do |format|
@@ -80,7 +80,7 @@ end
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @group = Group.find(current_user.group_id)
+    @group = Group.find(group_id)
     if @group.admin != current_user.username
       redirect_to(root_path)
     else
@@ -120,12 +120,11 @@ end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-     #if (!params[:id])
       @post = Post.find(params[:id])
-     #else
-      # @post = Post.where('title'=>params[:id])
+    end
 
-      # end
+    def group_id
+      group_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
