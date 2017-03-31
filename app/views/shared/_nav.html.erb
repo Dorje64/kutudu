@@ -1,0 +1,18 @@
+
+<% if controller_name == "posts" %>
+
+    <div class="page-header">
+      <% if action_name == "index"%>
+
+      <%= link_to ' NewPost', new_post_path ,:class=>"glyphicon glyphicon-plus btn btn-default" %>
+         <div style="float:right"> <%= paginate @posts  %></div>
+
+
+          <%else %>
+
+      <%= link_to ' Back ',posts_path ,:class=>"glyphicon glyphicon-circle-arrow-left btn btn-default"%>
+
+          <%end%>
+
+    </div>
+<%end%>

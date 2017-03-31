@@ -1,0 +1,47 @@
+<%=render "shared/header"%>
+
+
+<div id="page">
+  <div id="container" class="col-md-offset-2 col-md-8">
+
+    <!-- Start Minimal Gallery Html Containers -->
+    <div id="gallery" class="content">
+      <div id="controls" class="controls"></div>
+      <div class="slideshow-container">
+        <div id="loading" class="loader"></div>
+        <div id="slideshow" class="slideshow"></div>
+      </div>
+    </div>
+    <div id="thumbs" class="navigation" >
+      <%@images.each do |i|%>
+      <ul class="thumbs noscript">
+
+        <li>
+          <a class="thumb" href="<%= i.image.url%>" title="<%= i.image_file_name %>" >
+           <div style="width: 50px"><%=image_tag(i.image.url,class:"img-responsive fill img-hover")%></div>
+          </a>
+        </li>
+
+        </ul>
+      <%end%>
+    </div>
+    <!-- End Minimal Gallery Html Containers -->
+    <div style="clear: both;"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // We only want these styles applied when javascript is enabled
+  $('div.navigation').css({'width' : '300px', 'float' : 'left'});
+  $('div.content').css('display', 'block');
+
+  $(document).ready(function() {
+    // Initialize Minimal Galleriffic Gallery
+    $('#thumbs').galleriffic({
+      imageContainerSel:      '#slideshow',
+      controlsContainerSel:   '#controls'
+    });
+  });
+</script>
+
+

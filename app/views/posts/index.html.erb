@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+
+
+  <% @posts.each do |post| %>
+
+      <div class="panel-body">
+        <div class="row">
+          <%if (post.deadline < Date.today) %>
+
+              <div class="col-md-6 col-sm-12" style="color:#ff0000">
+
+        <b> <%= post.title %><%= post.no %><%= "   of   " %><%= post.course%>
+        <% if post.title == "Assigment" || post.title == "Lab Report"   %>
+            <%= "has to be submited by "%>
+                <%else%>
+            <%=" will be held on" %>
+                <%end%>
+            <%= post.deadline%></b>
+        </div>
+
+              <%else%>
+
+
+              <div class="col-md-6 col-sm-12">
+
+                <b> <%= post.title %><%= post.no %><%= "   of   " %><%= post.course%>
+                  <% if post.title == "Assigment" || post.title == "Lab Report"   %>
+                      <%= " has to be submited by "%>
+                  <%else%>
+                      <%=" will be held on " %>
+                  <%end%>
+                  <%= post.deadline%></b>
+              </div>
+
+
+        <%end%>
+  <div class="col-md-6 col-xs-2 row inline">
+    <div class="col-md-2">
+      <%= form_for([post,@done]) do |f1| %>
+          <%if !current_user.dones.find_by_post_id(post.id)%>
+              <%= f1.hidden_field :post_id, value: post.id  %>
+              <%= f1.submit value: "  Done" ,:confirm=> "Are you sure?" ,:class=>"btn btn-default" %>
+          <%else%>
+              <span class="glyphicon glyphicon-ok "></span>
+          <% end %>
+      <%end%>
+    </div>
+
+
+
+    <div class="col-md-10">
+      <%= link_to 'Show Detail', post%>
+
+      <%if current_user.username == @group.admin %>
+          <%= link_to 'Edit', edit_post_path(post) ,:class=>"col-md-2" %>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } ,:class=>"col-md-4"%>
+      <%end%>
+</div>
+    </div>
+
+</div>
+        <div class=" col-md-12" style="border-top: 1px solid#e9e9e9;  margin-top: 15px"></div>
+
+</div>
+<%end%>
+</div>
+
+<% content_for :header do %>
+    <%= render 'shared/header'%>
+<%end%>
+
+<% content_for :sidebar do%>
+    <%= render 'shared/sidebar'%>
+<%end%>
+
+<% content_for :top do%>
+      <!--<button type="button" class="btn btn-default">Default</button>-->
+      <%= render 'shared/nav'%>
+    <!--<%#=paginate @posts %>-->
+
+<% end %>
+

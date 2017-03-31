@@ -1,0 +1,134 @@
+<p id="notice"><%= notice %></p>
+
+
+  <!--<div class="titleBox">-->
+    <!--<label> Post</label>-->
+    <!--&lt;!&ndash;<button type="button" class="close" aria-hidden="true">&times;</button>&ndash;&gt;-->
+  <!--</div>-->
+
+<div class="panel panel-success">
+  <div class="panel-body">
+  <b style="height: 50px; padding:1%"><p style="font-size:190%" class="col-md-12 col-sm-12 col-xs-12">
+  <b> <%= @post.title %></b>
+  <%= @post.no %>
+  <%= "   of   " %>
+  <%= @post.course%>
+  <% if @post.title == "Assigment" || @post.title == "Lab Report"   %>
+      <%= "has to be submited by "%>
+  <%else%>
+      <%=" will be held on" %>
+  <%end%>
+  <%= @post.deadline%>
+
+</p></b>
+</div>
+  <div class="panel-footer">
+<div class="col-md-6">
+    <%= form_for([@post,@image],:html => {:multipart => true}, :class=>"form-inline") do |f| %>
+      <choose> <%= f.file_field :image , :class=>"col-md-8 input-group-button"%></choose>
+          <%=f.hidden_field :user_id ,value: current_user.id%>
+          <%=f.hidden_field :post_id ,value: @post.id %>
+         <upload> <%= f.submit "Upload" ,:class=>"input-group-button col-md-4"%></upload>
+  <% end %>
+
+    </div>
+
+    <p class="col-md-3 col-md-offset-3" >
+  <span class="sub-text"> <%= @post.username %></span><br>
+  <span class="date sub-text"><%= time_ago_in_words(@post.created_at) %> ago</span>
+</p>
+
+
+  <%=link_to "PHOTOS",images_show_path(:id => @post.id), class:"btn btn-info" %><span class="badge">  <%= @post.images.where('image_content_type'=>"image/jpeg").count%></span>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#list">PDF FILES</button>
+    <span class="badge"><%=@post.images.where('image_content_type'=>"application/pdf").count%></span>
+
+    <div id="list" class="collapse">
+      <% @post.images.where('image_content_type'=>"application/pdf").each do |pdf|%>
+      <li><%= link_to "#{pdf.image_file_name}",images_pdf_path(:id=>pdf.id) %></li>
+      <%end%>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="detailBox">
+<div class="titleBox">
+  <label>Comments</label>
+  <!--<button type="button" class="close" aria-hidden="true">&times;</button>-->
+</div>
+
+<div class="actionBox">
+  <ul class="commentList">
+
+<!--show comments-->
+  <% @post.comments.each do |comment| %>
+
+    <li>
+      <div class="commentText">
+        <b><%= comment.username %></b>
+        <p class=""><%= comment.content %> </p> <span class="date sub-text"><%= time_ago_in_words(comment.created_at) %> ago</span>
+
+</div>
+</li>
+
+<%end%>
+
+</ul>
+<!--</div>-->
+<!--<p><%#= notice %></p>-->
+<%= form_for([@post,@comment]) do |f| %>
+    <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+          <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+
+
+<!--<div class="col-md-12">-->
+<div class="form-inline form-group field">
+
+        <%= f.text_area :content, :class=>"form-control fixed" ,cols: 80, rows:1,  :placeholder=>"Your comments" %>
+        <%= f.hidden_field :post_id ,value: @post.id %>
+
+
+        <%= f.submit  :value=> "Comment" ,:class=>"form-control action btn btn-primary  "  %>
+      </div>
+  <% end %>
+</div>
+
+</div>
+
+<% content_for :header do %>
+    <%= render 'shared/header'%>
+<%end%>
+
+
+<% content_for :sidebar do%>
+
+    <%= render 'shared/sidebar'%>
+
+<%end%>
+
+<% content_for :top do%>
+    <%= render 'shared/nav'%>
+<% end %>
+
+<script>
+  $("upload").hide();
+    $("choose").click(function()
+    {
+      $("upload").show();
+    })
+</script>

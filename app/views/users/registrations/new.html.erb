@@ -1,0 +1,70 @@
+<body class="jumbotron">
+<div style=" margin-top:50px" class="mainbox col-md-7 col-md-offset-1 col-sm-8 col-sm-offset-2">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <div class="panel-title">Sign Up</div>
+    </div>
+    <div class="panel-body" >
+      <div class="form-horizontal" role="form">
+
+        <!--<div style="display:none" class="alert alert-danger">-->
+          <!--<p>Error:</p>-->
+          <!--<span></span>-->
+        <!--</div>-->
+
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+
+    <div class="field row">
+      <%= f.label :username , :class=>"col-md-3" %>
+      <%= f.text_field :username,:class=>"col-md-2 form-control ", :style=>"width:70%;", autofocus: true %>
+    </div>
+</br>
+
+  <div class="field row">
+    <%= f.label :email,:class=>"col-md-3" %>
+    <%= f.email_field :email, :class=>"col-md-9 form-control",:style=>"width:70%;" %>
+  </div>
+            </br>
+
+  <div class="field row">
+
+
+    <%= f.label :password,:class=>"col-md-3" %>
+        <% if @validatable %>
+
+      <%= f.password_field :password, autocomplete: "off",:class=>"col-md-9 form-control", :style=>"width:70%;" ,:placeholder=>'(8 characters minimum)' %>
+<%else%>
+        <%= f.password_field :password, autocomplete: "off",:class=>"col-md-9 form-control", :style=>"width:70%;"  %>
+    <% end %>
+        </div>
+</br>
+
+  <div class="field row">
+    <%= f.label :password_confirmation ,:class=>"col-md-3"%>
+    <%= f.password_field :password_confirmation, autocomplete: "off" ,:class=>"col-md-9 form-control" ,:style=>"width:70%;",:placeholder=>"Enter your password again"%>
+      </div>
+</br>
+    <div class="form-group">
+      <%= f.label :group,:class=>"col-md-3" %>
+      <% if @group_options= Group.all.map{|g|  [g.groupname,g.id]} %>
+      <%= f.select(:group_id ,options_for_select(@group_options),{:class=>"form-control"} )%>
+          <%end%>
+    </div>
+
+</br>
+  <div class="actions col-md-3",style="margin-top:10px">
+    <%= f.submit "Sign up" ,:class=>"btn btn-success"%>
+  </div>
+<% end %>
+</div>
+      <div class="form-group col-md-12 control" style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+
+        <%= render "users/shared/links" %>
+      </div>
+
+</div>
+      </div>
+    </div>
